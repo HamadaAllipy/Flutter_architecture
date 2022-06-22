@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_architecture/presentation/res/colors_manager.dart';
-import 'package:flutter_architecture/presentation/res/fonts_manager.dart';
-import 'package:flutter_architecture/presentation/res/styles_manager.dart';
+import 'package:flutter_architecture/presentation/res/res.dart';
 
 ThemeData getLightTheme() {
   return ThemeData(

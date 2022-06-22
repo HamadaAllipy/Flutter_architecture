@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_architecture/presentation/res/strings_manager.dart';
-import 'package:flutter_architecture/presentation/splash/splash_view.dart';
+import 'package:flutter_architecture/presentation/res/res.dart';
+import 'package:flutter_architecture/presentation/screens.dart';
 
 class Routes {
   Routes._();
@@ -17,6 +17,8 @@ class RoutesGenerator {
     switch (settings.name) {
       case Routes.splashRoute:
         return _move(const SplashView());
+      case Routes.onBoardingRoute:
+        return _move(const OnBoardingView());
       default:
         return _move(_noRouteWidget());
     }

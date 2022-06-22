@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_architecture/presentation/res/routes_manager.dart';
-
+part of '/main.dart';
 class MyApp extends StatefulWidget {
 
   const MyApp._internal();
