@@ -200,10 +200,3 @@ class SliderPage extends StatelessWidget {
   }
 }
 
-class SliderObject {
-  final String title;
-  final String supTitle;
-  final String image;
-
-  SliderObject(this.title, this.supTitle, this.image);
-}
