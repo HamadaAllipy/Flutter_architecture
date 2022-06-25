@@ -83,7 +83,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   IconButton(
-                    onPressed: _previousPage,
+                    onPressed: _goPreviousPage,
                     icon: const Icon(
                       Icons.arrow_back_ios,
                       color: ColorsManager.white,
@@ -99,7 +99,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                     ],
                   ),
                   IconButton(
-                    onPressed: _nextPage,
+                    onPressed: _goNextPage,
                     icon: const Icon(
                       Icons.arrow_forward_ios,
                       color: ColorsManager.white,
@@ -116,14 +116,18 @@ class _OnBoardingViewState extends State<OnBoardingView> {
 
   void _skipButton() {}
 
-  void _nextPage() {
+  void _goNextPage() {
     setState((){
       _pageController.animateToPage(getNextIndex(), duration: const Duration(milliseconds: AppConstants.sliderTime), curve: Curves.linear);
 
     });
   }
 
-  void _previousPage() {}
+  void _goPreviousPage() {
+    setState((){
+      _pageController.animateToPage(getPreviousIndex(), duration: const Duration(milliseconds: AppConstants.sliderTime), curve: Curves.linear);
+    });
+  }
 
   int getNextIndex(){
     int nextIndex = ++_currentPage;
@@ -155,7 +159,16 @@ class _OnBoardingViewState extends State<OnBoardingView> {
 
     super.initState();
   }
+
+  int getPreviousIndex() {
+    int previousIndex = --_currentPage;
+    if(_currentPage == -1){
+      previousIndex = _sliders.length - 1;
+    }
+    return previousIndex;
+  }
 }
+
 
 class SliderPage extends StatelessWidget {
   final SliderObject slider;
