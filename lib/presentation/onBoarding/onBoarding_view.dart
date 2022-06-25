@@ -76,20 +76,31 @@ class _OnBoardingViewState extends State<OnBoardingView> {
             ),
             Container(
               color: ColorsManager.primary,
+              height: AppSize.s50,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   IconButton(
-                    onPressed: () {},
+                    onPressed: _previousPage,
                     icon: const Icon(
                       Icons.arrow_back_ios,
+                      color: ColorsManager.white,
                     ),
                   ),
-                  indicatorWidget(),
+                  Row(
+                    children: [
+                      for (int i = 0; i < _sliders.length; i++)
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: indicatorWidget(i),
+                        ),
+                    ],
+                  ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: _nextPage,
                     icon: const Icon(
                       Icons.arrow_forward_ios,
+                      color: ColorsManager.white,
                     ),
                   ),
                 ],
@@ -103,11 +114,24 @@ class _OnBoardingViewState extends State<OnBoardingView> {
 
   void _skipButton() {}
 
-  Widget indicatorWidget(){
+  void _nextPage() {}
+
+  void _previousPage() {}
+
+  Widget indicatorWidget(int index) {
+    if (index == _currentPage) {
+      return SvgPicture.asset(
+        IconsManager.circleSolid,
+        width: AppSize.s12,
+        height: AppSize.s12,
+        color: ColorsManager.white,
+      );
+    }
     return SvgPicture.asset(
-      IconsManager.circleSolid,
+      IconsManager.circleHollow,
       width: AppSize.s12,
       height: AppSize.s12,
+      color: ColorsManager.white,
     );
   }
 

@@ -31,6 +31,6 @@ ThemeData getLightTheme() {
         fontSize: FontSizes.s12,
       ),
     ),
-
+    bottomSheetTheme: BottomSheetThemeData(),
   );
 }
