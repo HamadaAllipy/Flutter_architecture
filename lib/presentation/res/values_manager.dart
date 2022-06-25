@@ -1,6 +1,7 @@
 class AppSize {
   const AppSize._();
 
+  static const double s0 = 0;
   static const double s12 = 12.0;
 }
 

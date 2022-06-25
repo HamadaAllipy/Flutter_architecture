@@ -39,4 +39,10 @@ class _SplashViewState extends State<SplashView> {
   void _next() {
     Navigator.pushReplacementNamed(context, Routes.onBoardingRoute);
   }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
 }

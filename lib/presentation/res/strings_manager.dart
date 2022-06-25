@@ -1,6 +1,9 @@
 class AppStrings {
+
+
   AppStrings._();
 
+  static const String skip = 'Skip';
   static const String noRouteFound = 'No Route Found';
   static const String titleOnBoarding1 = 'SEE THE BEST COURSE #1';
   static const String supTitleOnBoarding1 =

@@ -3,6 +3,12 @@ import 'package:flutter_architecture/presentation/res/res.dart';
 
 ThemeData getLightTheme() {
   return ThemeData(
+
+    appBarTheme: const AppBarTheme(
+      backgroundColor: ColorsManager.white,
+      elevation: AppSize.s0,
+    ),
+    scaffoldBackgroundColor: ColorsManager.white,
     textTheme: TextTheme(
       // headline large
       headlineLarge: getSemiBoldStyle(
@@ -17,13 +23,14 @@ ThemeData getLightTheme() {
       // label medium
       labelMedium: getMediumStyle(
         color: ColorsManager.primary,
-        fontSize: FontSizes.s14,
+        fontSize: FontSizes.s16,
       ),
-      // label medium
+      // label small
       labelSmall: getRegularStyle(
         color: ColorsManager.primary,
         fontSize: FontSizes.s12,
       ),
     ),
+
   );
 }
