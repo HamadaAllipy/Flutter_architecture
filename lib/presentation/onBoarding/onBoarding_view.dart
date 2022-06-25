@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_architecture/presentation/res/app_constants.dart';
 import 'package:flutter_architecture/presentation/res/res.dart';
 import 'package:flutter_architecture/presentation/screens.dart';
 import 'package:flutter_svg/svg.dart';
@@ -13,7 +14,7 @@ class OnBoardingView extends StatefulWidget {
 
 class _OnBoardingViewState extends State<OnBoardingView> {
   late final List<SliderObject> _sliders = getSliders();
-  late PageController _pageController;
+  final PageController _pageController = PageController(initialPage: 0);
   int _currentPage = 0;
 
   List<SliderObject> getSliders() => [
@@ -49,6 +50,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
         ),
       ),
       body: PageView.builder(
+        controller: _pageController,
         itemBuilder: (context, index) {
           return SliderPage(slider: _sliders[index]);
         },
@@ -114,9 +116,22 @@ class _OnBoardingViewState extends State<OnBoardingView> {
 
   void _skipButton() {}
 
-  void _nextPage() {}
+  void _nextPage() {
+    setState((){
+      _pageController.animateToPage(getNextIndex(), duration: const Duration(milliseconds: AppConstants.sliderTime), curve: Curves.linear);
+
+    });
+  }
 
   void _previousPage() {}
+
+  int getNextIndex(){
+    int nextIndex = ++_currentPage;
+    if(_currentPage == _sliders.length){
+      nextIndex = 0;
+    }
+    return nextIndex;
+  }
 
   Widget indicatorWidget(int index) {
     if (index == _currentPage) {
@@ -137,7 +152,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
 
   @override
   void initState() {
-    _pageController = PageController(initialPage: 0);
+
     super.initState();
   }
 }
