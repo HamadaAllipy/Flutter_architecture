@@ -59,6 +59,55 @@ class _OnBoardingViewState extends State<OnBoardingView> {
           });
         },
       ),
+      bottomSheet: Container(
+        color: ColorsManager.white,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Align(
+              alignment: AlignmentDirectional.centerEnd,
+              child: TextButton(
+                onPressed: _skipButton,
+                child: Text(
+                  AppStrings.skip,
+                  style: Theme.of(context).textTheme.labelMedium,
+                ),
+              ),
+            ),
+            Container(
+              color: ColorsManager.primary,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.arrow_back_ios,
+                    ),
+                  ),
+                  indicatorWidget(),
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.arrow_forward_ios,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _skipButton() {}
+
+  Widget indicatorWidget(){
+    return SvgPicture.asset(
+      IconsManager.circleSolid,
+      width: AppSize.s12,
+      height: AppSize.s12,
     );
   }
 
