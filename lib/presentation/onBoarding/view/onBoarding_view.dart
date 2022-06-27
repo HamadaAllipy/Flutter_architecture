@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_architecture/domain/models.dart';
 import 'package:flutter_architecture/presentation/res/app_constants.dart';
 import 'package:flutter_architecture/presentation/res/res.dart';
 import 'package:flutter_architecture/presentation/screens.dart';
