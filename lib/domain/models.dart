@@ -17,3 +17,4 @@ class SliderViewObject {
     required this.numOfSlider,
   });
 }
+void test(){}
