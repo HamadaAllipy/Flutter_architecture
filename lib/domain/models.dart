@@ -18,3 +18,4 @@ class SliderViewObject {
   });
 }
 void test(){}
+void test2(){}
