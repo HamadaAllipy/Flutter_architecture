@@ -1,10 +1,10 @@
-abstract class BaseViewModel extends BaseViewModelInput
-    with BaseViewModelOutput {}
+abstract class BaseViewModel extends _BaseViewModelInput
+    with _BaseViewModelOutput {}
 
-abstract class BaseViewModelInput {
+abstract class _BaseViewModelInput {
   void start();
 
   void dispose();
 }
 
-abstract class BaseViewModelOutput {}
+abstract class _BaseViewModelOutput {}
