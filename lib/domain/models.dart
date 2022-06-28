@@ -1,19 +1,24 @@
+// onBoarding
 class SliderObject {
   final String title;
   final String supTitle;
   final String image;
 
-  SliderObject(this.title, this.supTitle, this.image);
+  SliderObject({
+    required this.image,
+    required this.supTitle,
+    required this.title,
+  });
 }
 
 class SliderViewObject {
   final SliderObject sliderObject;
-  final int numOfSlider;
+  final int slidersLength;
   final int currentIndex;
 
   SliderViewObject({
     required this.sliderObject,
     required this.currentIndex,
-    required this.numOfSlider,
+    required this.slidersLength,
   });
 }

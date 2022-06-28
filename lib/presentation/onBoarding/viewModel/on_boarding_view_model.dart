@@ -3,52 +3,70 @@ import 'dart:async';
 import 'package:flutter_architecture/domain/models.dart';
 import 'package:flutter_architecture/presentation/base/base_view_model.dart';
 
-class OnBoardingViewModel extends BaseViewModel
-    with OnBoardingViewModelInput, OnBoardingViewModelOutput {
+import '../../res/res.dart';
 
-  final StreamController _streamController = StreamController<SliderViewObject>();
+class OnBoardingViewModel extends BaseViewModel with _OnBoardingViewModelInput, _OnBoardingViewModelOutput{
 
-  @override
-  void dispose() {}
-
-  @override
-  void start() {}
+  late final List<SliderObject> _sliders;
+  final int _currentIndex = 0;
+  final StreamController<SliderViewObject> _streamController = StreamController<SliderViewObject>();
 
   @override
-  void goNextSlider() {}
-
-  @override
-  void goPreviousSlider() {}
-
-  @override
-  int onPageChanged(int index) {
-    throw UnimplementedError();
+  void dispose() {
+    // TODO: implement dispose
   }
 
   @override
-  void skip() {}
+  void start() {
+    _sliders = _getAllSlider();
+    _postDataToView();
+  }
+
+
+  // Section private methods
+
+  void _postDataToView(){
+    inputSliderViewObject.add(SliderViewObject(sliderObject: _sliders[_currentIndex], currentIndex: _currentIndex, slidersLength: _sliders.length));
+  }
+
+  List<SliderObject> _getAllSlider()=>[
+    SliderObject(
+      title: AppStrings.titleOnBoarding1,
+      supTitle: AppStrings.supTitleOnBoarding1,
+      image: ImagesManager.imageOnBoarding1,
+    ),
+    SliderObject(
+      title: AppStrings.titleOnBoarding2,
+      supTitle: AppStrings.supTitleOnBoarding2,
+      image: ImagesManager.imageOnBoarding2,
+    ),
+    SliderObject(
+      title: AppStrings.titleOnBoarding3,
+      supTitle: AppStrings.supTitleOnBoarding3,
+      image: ImagesManager.imageOnBoarding3,
+    ),
+    SliderObject(
+      title: AppStrings.titleOnBoarding4,
+      supTitle: AppStrings.supTitleOnBoarding4,
+      image: ImagesManager.imageOnBoarding4,
+    ),
+  ];
 
   @override
-  // TODO: implement sink
-  Sink get inputSliderViewObject => throw UnimplementedError();
+  Sink get inputSliderViewObject => _streamController.sink;
 
   @override
-  // TODO: implement stream
-  Stream get outSliderViewObject => throw UnimplementedError();
+  Stream<SliderViewObject> get outputSliderViewObject => _streamController.stream;
 }
 
-abstract class OnBoardingViewModelInput {
-  void skip();
 
-  void goNextSlider();
+// input view model
+abstract class _OnBoardingViewModelInput{
 
-  void goPreviousSlider();
-
-  int onPageChanged(int index);
 
   Sink get inputSliderViewObject;
 }
-
-abstract class OnBoardingViewModelOutput {
-  Stream get outSliderViewObject;
+// output view model
+abstract class _OnBoardingViewModelOutput{
+  Stream<SliderViewObject> get outputSliderViewObject;
 }

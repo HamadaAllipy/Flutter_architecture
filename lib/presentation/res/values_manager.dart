@@ -2,8 +2,10 @@ class AppSize {
   const AppSize._();
 
   static const double s0 = 0;
+  static const double s7 = 47;
   static const double s12 = 12.0;
   static const double s25 = 25.0;
+  static const double s35 = 35.0;
   static const double s50 = 50.0;
 }
 
