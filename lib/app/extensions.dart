@@ -1,7 +1,9 @@
+import 'package:flutter_architecture/app/constants.dart';
+
 extension NunNullString on String? {
-  String orNull() {
+  String orEmpty() {
     if (this == null) {
-      return '';
+      return Constants.empty;
     } else {
       return this!;
     }
@@ -11,7 +13,7 @@ extension NunNullString on String? {
 extension NunNullInteger on int? {
   int orZero() {
     if (this == null) {
-      return 0;
+      return Constants.zero;
     } else {
       return this!;
     }
