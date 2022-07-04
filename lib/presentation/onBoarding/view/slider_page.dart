@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_architecture/domain/models.dart';
+import 'package:flutter_architecture/domain/models/models.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SliderPage extends StatelessWidget {

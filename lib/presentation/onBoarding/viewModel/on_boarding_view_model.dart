@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter_architecture/domain/models.dart';
+import 'package:flutter_architecture/domain/models/models.dart';
 import 'package:flutter_architecture/presentation/base/base_view_model.dart';
 
 import '../../res/res.dart';

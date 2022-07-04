@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_architecture/domain/models.dart';
+import 'package:flutter_architecture/domain/models/models.dart';
 import 'package:flutter_architecture/presentation/onBoarding/view/slider_page.dart';
 import 'package:flutter_architecture/presentation/onBoarding/viewModel/on_boarding_view_model.dart';
 import 'package:flutter_architecture/presentation/res/app_constants.dart';
