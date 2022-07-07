@@ -32,6 +32,7 @@ class OnBoardingViewModel extends BaseViewModel with InputOnBoardingViewModel, O
     if(_currentIndex == _slider.length){
       _currentIndex = 0;
     }
+    updateView();
     return _currentIndex;
   }
 
