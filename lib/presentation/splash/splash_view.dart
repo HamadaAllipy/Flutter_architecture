@@ -1,9 +1,10 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_architecture/presentation/res/assets_manager.dart';
-import 'package:flutter_architecture/presentation/res/colors_manager.dart';
-import 'package:flutter_architecture/presentation/res/routes_manager.dart';
+import 'package:flutter_architecture/presentation/onBoarding/viewModel/on_boarding_view_model.dart';
+import 'package:flutter_architecture/presentation/res/app_constants.dart';
+import 'package:flutter_architecture/presentation/res/res.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({Key? key}) : super(key: key);
@@ -14,11 +15,10 @@ class SplashView extends StatefulWidget {
 
 class _SplashViewState extends State<SplashView> {
 
-  late final Timer _timer;
-
+  final OnBoardingViewModel _viewModel = OnBoardingViewModel();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return  Scaffold(
       backgroundColor: ColorsManager.primary,
       body: Center(
         child: Image.asset(ImagesManager.splashLogo),
@@ -28,21 +28,16 @@ class _SplashViewState extends State<SplashView> {
 
   @override
   void initState() {
-    _startDelay();
+    _viewModel.start();
+    startDelay();
     super.initState();
   }
 
-  void _startDelay() {
-    _timer =  Timer(const Duration(seconds: 2), _next);
+  void startDelay() {
+    Timer(const Duration(seconds: AppConstants.splashDaley), _goNext);
   }
 
-  void _next() {
-    Navigator.pushReplacementNamed(context, Routes.onBoardingRoute);
-  }
-
-  @override
-  void dispose() {
-    _timer.cancel();
-    super.dispose();
+  _goNext() {
+    Navigator.pushNamed(context, Routes.onBoardingRoute);
   }
 }

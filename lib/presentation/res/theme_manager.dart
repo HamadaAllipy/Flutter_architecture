@@ -31,6 +31,14 @@ ThemeData getLightTheme() {
         fontSize: FontSizes.s12,
       ),
     ),
-    bottomSheetTheme: BottomSheetThemeData(),
+    bottomSheetTheme: const BottomSheetThemeData(),
+    buttonTheme: const ButtonThemeData(
+      buttonColor: ColorsManager.primary,
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        primary: ColorsManager.primary,
+      )
+    )
   );
 }
