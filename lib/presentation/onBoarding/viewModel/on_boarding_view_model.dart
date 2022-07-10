@@ -10,31 +10,30 @@ class OnBoardingViewModel extends BaseViewModel with InputOnBoardingViewModel, O
 
   late List<SliderObject> _slider;
 
-  late StreamController<SliderViewObject> _streamController;
+  final StreamController<SliderViewObject> _streamController = StreamController<SliderViewObject>();
   int _currentIndex = 0;
+
+
+  void updateView(){
+    inputSliderViewObject.add(SliderViewObject(
+        _slider[_currentIndex],
+        _currentIndex,
+        _slider.length,
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _streamController.close();
+  }
 
   @override
   void start() {
-    _streamController = StreamController<SliderViewObject>();
     _slider = _getSliders();
     updateView();
   }
 
-  @override
-  void dispose() {}
-
-  void updateView(){
-    inputSliderViewObject.add(SliderViewObject(_slider[_currentIndex], _currentIndex, _slider.length));
-  }
-  @override
-  int getNextIndex() {
-    _currentIndex++;
-    if(_currentIndex == _slider.length){
-      _currentIndex = 0;
-    }
-    updateView();
-    return _currentIndex;
-  }
 
   @override
   void onPageChanged(int index) {
@@ -43,12 +42,22 @@ class OnBoardingViewModel extends BaseViewModel with InputOnBoardingViewModel, O
   }
 
   @override
+  int getNextIndex() {
+    int index =  ++_currentIndex;
+    if(index == _slider.length){
+      index = 0;
+    }
+    return index;
+  }
+
+
+
+  @override
   int getPreviousIndex() {
-    _currentIndex--;
+    --_currentIndex;
     if(_currentIndex == -1){
       _currentIndex = _slider.length - 1;
     }
-    updateView();
     return _currentIndex;
   }
 

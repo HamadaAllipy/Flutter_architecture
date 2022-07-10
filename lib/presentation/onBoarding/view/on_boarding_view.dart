@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_architecture/domain/models/models.dart';
 import 'package:flutter_architecture/presentation/onBoarding/viewModel/on_boarding_view_model.dart';
@@ -18,14 +20,20 @@ class OnBoardingView extends StatefulWidget {
 
 class _OnBoardingViewState extends State<OnBoardingView> {
   late final OnBoardingViewModel _viewModel;
-  late PageController _pageController;
+  final PageController _pageController = PageController(initialPage: 0);
 
   @override
   void initState() {
     _viewModel = OnBoardingViewModel();
-    _pageController = PageController(initialPage: 0);
     _viewModel.start();
     super.initState();
+  }
+
+
+  @override
+  void dispose() {
+    _viewModel.dispose();
+    super.dispose();
   }
 
   @override
@@ -107,9 +115,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                     padding: const EdgeInsetsDirectional.only(
                       start: AppPadding.p12,
                     ),
-                    onPressed: () {
-                      onRightArrowButton();
-                    },
+                    onPressed: onRightArrowButton,
                     icon: const Icon(
                       Icons.arrow_forward_ios,
                       color: ColorsManager.white,
@@ -135,11 +141,16 @@ class _OnBoardingViewState extends State<OnBoardingView> {
   }
 
   void onLeftArrowButton() {
-    _pageController.animateToPage(_viewModel.getPreviousIndex(), duration: const Duration(seconds: AppConstants.sliderTime), curve: Curves.linear);
+    setState((){
+      _pageController.animateToPage(_viewModel.getPreviousIndex(), duration: const Duration(milliseconds: AppConstants.sliderTime), curve: Curves.linear);
+
+    });
   }
 
   void onRightArrowButton() {
-    _pageController.animateToPage(_viewModel.getNextIndex(), duration: const Duration(seconds: AppConstants.sliderTime), curve: Curves.linear);
+    setState((){
+      _pageController.animateToPage(_viewModel.getNextIndex(), duration: const Duration(milliseconds: AppConstants.sliderTime), curve: Curves.linear);
+    });
   }
 
 

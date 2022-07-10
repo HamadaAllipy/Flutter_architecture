@@ -18,3 +18,26 @@ class SliderViewObject{
 
   SliderViewObject(this.sliderObject, this.currentIndex, this.numOfSliders);
 }
+
+class CustomerModel {
+  String id;
+  String name;
+  int numOfNotification;
+
+  CustomerModel(this.id, this.name, this.numOfNotification);
+}
+
+class ContactModel {
+  String phone;
+  String email;
+  String link;
+
+  ContactModel(this.phone, this.email, this.link);
+}
+
+class AuthenticationModel {
+  CustomerModel? customerModel;
+  ContactModel? contactModel;
+
+  AuthenticationModel(this.customerModel, this.contactModel);
+}
