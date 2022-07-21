@@ -5,21 +5,21 @@ import 'package:flutter_architecture/domain/models/models.dart';
 import 'package:flutter_architecture/domain/repository/repository.dart';
 import 'package:flutter_architecture/domain/useCase/base_use_case.dart';
 
-class LoginUseCase implements BaseUseCase<InputUseCase, AuthenticationModel> {
+class LoginUseCase implements BaseUseCase<LoginUseCaseInput, AuthenticationModel> {
   final Repository _repository;
 
   LoginUseCase(this._repository);
 
   @override
   Future<Either<Failure, AuthenticationModel>> execute(
-      InputUseCase input) async {
+      LoginUseCaseInput input) async {
     return await _repository.login(LoginRequest(input.email, input.password));
   }
 }
 
-class InputUseCase {
+class LoginUseCaseInput {
   final String email;
   final String password;
 
-  InputUseCase(this.email, this.password);
+  LoginUseCaseInput(this.email, this.password);
 }
