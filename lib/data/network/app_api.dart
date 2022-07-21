@@ -1,7 +1,10 @@
+// Package imports:
 import 'package:dio/dio.dart';
+// Project imports:
 import 'package:flutter_architecture/app/constants.dart';
 import 'package:flutter_architecture/data/response/responses.dart';
 import 'package:retrofit/retrofit.dart';
+
 part 'app_api.g.dart';
 
 @RestApi(baseUrl: Constants.baseUrl)

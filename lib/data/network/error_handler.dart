@@ -1,6 +1,7 @@
+// Package imports:
 import 'package:dio/dio.dart';
+// Project imports:
 import 'package:flutter_architecture/data/network/failure.dart';
-
 
 class ErrorHandler{
 

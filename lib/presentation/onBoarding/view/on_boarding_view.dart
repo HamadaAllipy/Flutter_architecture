@@ -1,14 +1,15 @@
-import 'dart:developer';
-
+// Dart imports:
+// Flutter imports:
 import 'package:flutter/material.dart';
+// Project imports:
 import 'package:flutter_architecture/domain/models/models.dart';
 import 'package:flutter_architecture/presentation/onBoarding/viewModel/on_boarding_view_model.dart';
 import 'package:flutter_architecture/presentation/res/app_constants.dart';
 import 'package:flutter_architecture/presentation/res/res.dart';
+// Package imports:
 import 'package:flutter_svg/svg.dart';
 
 part 'slider_page.dart';
-
 part 'widgets/indicator.dart';
 
 class OnBoardingView extends StatefulWidget {

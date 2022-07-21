@@ -1,5 +1,5 @@
+// Dart imports:
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:flutter_architecture/domain/useCase/login_use_case.dart';
 import 'package:flutter_architecture/presentation/base/base_view_model.dart';
@@ -14,10 +14,10 @@ class LoginViewModel extends BaseViewModel
 
   final StreamController<void> _allInputStreamController = StreamController<void>.broadcast();
 
-  // final LoginUseCase _loginUseCase;
+  final LoginUseCase _loginUseCase;
 
-  // LoginViewModel(this._loginUseCase);
-  LoginViewModel();
+  LoginViewModel(this._loginUseCase);
+  // LoginViewModel();
 
   LoginObject _loginObject = LoginObject('', '');
 

@@ -1,8 +1,10 @@
+// Flutter imports:
+// Package imports:
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+// Project imports:
 import 'package:flutter_architecture/app/app_prefs.dart';
 import 'package:flutter_architecture/app/constants.dart';
-import 'package:flutter_architecture/presentation/res/language_manager.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 const String applicationJson = 'application/json';

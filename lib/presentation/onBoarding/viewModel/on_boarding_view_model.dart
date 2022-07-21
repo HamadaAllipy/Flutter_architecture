@@ -1,6 +1,7 @@
+// Dart imports:
 import 'dart:async';
-import 'dart:developer';
 
+// Project imports:
 import 'package:flutter_architecture/domain/models/models.dart';
 import 'package:flutter_architecture/presentation/base/base_view_model.dart';
 import 'package:flutter_architecture/presentation/res/res.dart';

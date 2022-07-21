@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:flutter_architecture/app/di.dart';
+// Project imports:
 import 'package:flutter_architecture/presentation/login/viewModel/login_view_model.dart';
 import 'package:flutter_architecture/presentation/res/res.dart';
 
@@ -10,7 +13,7 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  final LoginViewModel _viewModel = LoginViewModel();
+  final LoginViewModel _viewModel = instance<LoginViewModel>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -105,10 +108,11 @@ class _LoginViewState extends State<LoginView> {
                   stream: _viewModel.areFieldsValid,
                   builder: (_,snapshot){
                     bool isValid =  snapshot.data??false;
-                    print('isValid $isValid');
-                    print('snapshot.data ${snapshot.data}');
+
                     return ElevatedButton(
-                      onPressed: isValid?(){}:null,
+                      onPressed: isValid?(){
+                        _viewModel.login();
+                      }:null,
                       child: const Text(
                         AppString.login,
                       ),

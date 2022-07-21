@@ -1,4 +1,4 @@
-import 'package:flutter_architecture/app/constants.dart';
+// Project imports:
 import 'package:flutter_architecture/app/constants.dart';
 import 'package:flutter_architecture/app/extensions.dart';
 import 'package:flutter_architecture/data/response/responses.dart';

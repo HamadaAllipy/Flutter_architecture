@@ -1,4 +1,6 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+// Project imports:
 import 'package:flutter_architecture/presentation/res/fonts_manager.dart';
 
 TextStyle _getTextStyle({

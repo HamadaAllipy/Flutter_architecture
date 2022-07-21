@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:flutter_architecture/app/di.dart';
+// Project imports:
 import 'package:flutter_architecture/presentation/login/view/login_view.dart';
 import 'package:flutter_architecture/presentation/res/res.dart';
 import 'package:flutter_architecture/presentation/screens.dart';
@@ -21,6 +24,7 @@ class RoutesGenerator {
       case Routes.onBoardingRoute:
         return _move(const OnBoardingView());
       case Routes.loginRoute:
+        initLoginModule();
         return _move(const LoginView());
       default:
         return _move(_noRouteWidget());
