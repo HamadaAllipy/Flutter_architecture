@@ -38,7 +38,8 @@ ThemeData getLightTheme() {
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         primary: ColorsManager.primary,
-      )
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppSize.s12)),
+      ),
     )
   );
 }

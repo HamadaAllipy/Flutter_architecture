@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_architecture/presentation/login/view/login_view.dart';
 import 'package:flutter_architecture/presentation/res/res.dart';
 import 'package:flutter_architecture/presentation/screens.dart';
 
@@ -19,6 +20,8 @@ class RoutesGenerator {
         return _move(const SplashView());
       case Routes.onBoardingRoute:
         return _move(const OnBoardingView());
+      case Routes.loginRoute:
+        return _move(const LoginView());
       default:
         return _move(_noRouteWidget());
     }
@@ -32,7 +35,7 @@ class RoutesGenerator {
     return const Scaffold(
       body: Center(
         child: Text(
-          AppStrings.noRouteFound,
+          AppString.noRouteFound,
         ),
       ),
     );

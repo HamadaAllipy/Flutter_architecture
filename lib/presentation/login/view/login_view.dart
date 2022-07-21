@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_architecture/presentation/login/viewModel/login_view_model.dart';
+import 'package:flutter_architecture/presentation/res/res.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -35,6 +36,90 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return getContentWidget();
+  }
+
+
+  Widget getContentWidget(){
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: AppPadding.p20),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(
+                height: AppSize.s100,
+              ),
+              Center(
+                child: Image.asset(ImagesManager.splashLogo),
+              ),
+              const SizedBox(
+                height: AppSize.s100,
+              ),
+              StreamBuilder<bool>(
+                stream: _viewModel.isEmailValidStream,
+                builder: (context, snapshot) {
+                  bool isValid = snapshot.data??true;
+                  return TextFormField(
+                    keyboardType: TextInputType.emailAddress,
+                    controller: _emailController,
+                    decoration: InputDecoration(
+                      hintText: AppString.email,
+                      labelText: AppString.email,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(AppSize.s12),
+                      ),
+                      errorText: isValid?null:AppString.emailError,
+                    ),
+                  );
+                },
+              ),
+              const SizedBox(
+                height: AppSize.s25,
+              ),
+              StreamBuilder<bool>(
+                stream: _viewModel.isPasswordValidStream,
+                builder: (context, snapshot) {
+                  bool isValid = snapshot.data??true;
+                  return TextFormField(
+                    keyboardType: TextInputType.emailAddress,
+                    controller: _passwordController,
+                    decoration: InputDecoration(
+                      hintText: AppString.password,
+                      labelText: AppString.password,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(AppSize.s12),
+                      ),
+                      errorText: isValid?null:AppString.passwordError,
+                    ),
+                  );
+                },
+              ),
+              const SizedBox(
+                height: AppSize.s25,
+              ),
+              SizedBox(
+                width: double.infinity,
+                height: AppSize.s50,
+                child: StreamBuilder<bool>(
+                  stream: _viewModel.areFieldsValid,
+                  builder: (_,snapshot){
+                    bool isValid =  snapshot.data??false;
+                    print('isValid $isValid');
+                    print('snapshot.data ${snapshot.data}');
+                    return ElevatedButton(
+                      onPressed: isValid?(){}:null,
+                      child: const Text(
+                        AppString.login,
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

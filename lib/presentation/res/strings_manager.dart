@@ -1,7 +1,7 @@
-class AppStrings {
+class AppString {
 
 
-  AppStrings._();
+  AppString._();
 
   static const String skip = 'Skip';
   static const String noRouteFound = 'No Route Found';
@@ -17,4 +17,13 @@ class AppStrings {
   static const String titleOnBoarding4 = 'SEE THE BEST COURSE #4';
   static const String supTitleOnBoarding4 =
       'Tut app is an awesome flutter application using clean architecture #4';
+
+  static const String userName = 'userName';
+  static const String email = 'Email';
+  static const String password = 'password';
+  static const String emailError = 'please enter your email';
+  static const String passwordError = 'please enter your password';
+  static const String login = 'login';
+  static const String forgetPassword = 'Forget password';
+  static const String registerText = 'Not a remember ? sign up';
 }

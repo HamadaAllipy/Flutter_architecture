@@ -15,10 +15,11 @@ class SplashView extends StatefulWidget {
 
 class _SplashViewState extends State<SplashView> {
 
-  final OnBoardingViewModel _viewModel = OnBoardingViewModel();
+  late final Timer _timer;
+
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       backgroundColor: ColorsManager.primary,
       body: Center(
         child: Image.asset(ImagesManager.splashLogo),
@@ -28,16 +29,21 @@ class _SplashViewState extends State<SplashView> {
 
   @override
   void initState() {
-    _viewModel.start();
-    startDelay();
+    // startDelay();
     super.initState();
   }
 
   void startDelay() {
-    Timer(const Duration(seconds: AppConstants.splashDaley), _goNext);
+    _timer = Timer(const Duration(seconds: AppConstants.splashDaley), _goNext);
   }
 
   _goNext() {
     Navigator.pushNamed(context, Routes.onBoardingRoute);
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
   }
 }

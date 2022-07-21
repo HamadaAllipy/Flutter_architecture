@@ -82,7 +82,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
             ),
             onPressed: _skipButton,
             child: Text(
-              AppStrings.skip,
+              AppString.skip,
               style: Theme.of(context).textTheme.labelMedium,
             ),
           ),
