@@ -32,14 +32,16 @@ ThemeData getLightTheme() {
       ),
     ),
     bottomSheetTheme: const BottomSheetThemeData(),
-    buttonTheme: const ButtonThemeData(
-      buttonColor: ColorsManager.primary,
-    ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         primary: ColorsManager.primary,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppSize.s12)),
       ),
-    )
+    ),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        primary: ColorsManager.primary,
+      )
+    ),
   );
 }

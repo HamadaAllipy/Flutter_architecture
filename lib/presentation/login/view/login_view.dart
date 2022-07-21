@@ -54,7 +54,7 @@ class _LoginViewState extends State<LoginView> {
                 child: Image.asset(ImagesManager.splashLogo),
               ),
               const SizedBox(
-                height: AppSize.s100,
+                height: AppSize.s25,
               ),
               StreamBuilder<bool>(
                 stream: _viewModel.isEmailValidStream,
@@ -115,6 +115,26 @@ class _LoginViewState extends State<LoginView> {
                     );
                   },
                 ),
+              ),
+              const SizedBox(
+                height: AppSize.s25,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      AppString.forgetPassword,
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {},
+                    child: const Text(
+                      AppString.registerText,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
