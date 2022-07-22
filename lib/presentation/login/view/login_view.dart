@@ -128,7 +128,7 @@ class _LoginViewState extends State<LoginView> {
                 children: [
                   TextButton(
                     onPressed: () {},
-                    child: Text(
+                    child: const Text(
                       AppString.forgetPassword,
                     ),
                   ),

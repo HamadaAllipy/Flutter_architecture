@@ -1,5 +1,6 @@
 // Dart imports:
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter_architecture/domain/useCase/login_use_case.dart';
 import 'package:flutter_architecture/presentation/base/base_view_model.dart';
@@ -48,13 +49,13 @@ class LoginViewModel extends BaseViewModel
 
   @override
   void login() async {
-    // (await _loginUseCase.execute(
-    //         LoginUseCaseInput(_loginObject.email, _loginObject.password)))
-    //     .fold((failure) => {
-    //       log('Failure ${failure.statusMessage}')
-    // }, (authentication) => {
-    //   log('authentication ${authentication.customerModel?.name}')
-    // });
+    (await _loginUseCase.execute(
+            LoginUseCaseInput(_loginObject.email, _loginObject.password)))
+        .fold((failure) => {
+          log('Failure ${failure.statusMessage}')
+    }, (authentication) => {
+      log('authentication ${authentication.customerModel?.name}')
+    });
   }
 
   @override

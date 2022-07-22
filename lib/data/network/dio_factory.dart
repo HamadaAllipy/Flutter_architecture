@@ -9,6 +9,7 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 const String applicationJson = 'application/json';
 const String accept = 'Accept';
+const String json = 'json';
 const String contentType = 'Content-Type';
 const String language = 'language';
 const String authorization = 'authorization';
@@ -25,7 +26,7 @@ class DioFactory {
 
     Map<String, dynamic> headers = {
       contentType: applicationJson,
-      accept: applicationJson,
+      accept: json,
       authorization: Constants.token,
       language: lang,
     };

@@ -14,40 +14,28 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 final GetIt instance = GetIt.instance;
 
-
 Future<void> initAppModule()async{
 
-  // init shared preferences
-  SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-  instance.registerLazySingleton<SharedPreferences>(() => sharedPreferences);
+  // shared preferences
 
+  final SharedPreferences sharedPrefs = await SharedPreferences.getInstance();
   // app preferences
-  instance.registerLazySingleton<AppPreferences>(() => AppPreferences(instance<SharedPreferences>()));
-
-  // network info
-  instance.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(InternetConnectionChecker()));
-
+  instance.registerLazySingleton<AppPreferences>(() => AppPreferences(sharedPrefs));
   // dio factory
   instance.registerLazySingleton<DioFactory>(() => DioFactory(instance<AppPreferences>()));
   Dio dio = await instance<DioFactory>().getDio();
-
   // app service client
-  instance.registerLazySingleton(() => AppServiceClient(dio));
-
+  instance.registerLazySingleton<AppServiceClient>(() => AppServiceClient(dio));
   // remote data source
   instance.registerLazySingleton<RemoteDataSource>(() => RemoteDataSourceImpl(instance<AppServiceClient>()));
-
+  // network info
+  instance.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(InternetConnectionChecker()));
   // repository
   instance.registerLazySingleton<Repository>(() => RepositoryImpl(instance<RemoteDataSource>(), instance<NetworkInfo>()));
-}
 
+}
 
 void initLoginModule(){
-
-  if(!GetIt.I.isRegistered<LoginUseCase>()){
-    instance.registerFactory<LoginUseCase>(() => LoginUseCase(instance<Repository>()));
-    instance.registerFactory<LoginViewModel>(() => LoginViewModel(instance<LoginUseCase>()));
-  }
-
+  instance.registerFactory(() => LoginUseCase(instance<Repository>()));
+  instance.registerFactory(() => LoginViewModel(instance<LoginUseCase>()));
 }
-
