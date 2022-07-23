@@ -83,7 +83,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
             ),
             onPressed: _skipButton,
             child: Text(
-              AppString.skip,
+              AppStrings.skip,
               style: Theme.of(context).textTheme.labelMedium,
             ),
           ),
@@ -153,6 +153,5 @@ class _OnBoardingViewState extends State<OnBoardingView> {
       _pageController.animateToPage(_viewModel.getNextIndex(), duration: const Duration(milliseconds: AppConstants.sliderTime), curve: Curves.linear);
     });
   }
-
 
 }

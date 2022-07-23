@@ -1,7 +1,7 @@
-class AppString {
+class AppStrings {
 
 
-  AppString._();
+  AppStrings._();
 
   static const String skip = 'Skip';
   static const String noRouteFound = 'No Route Found';
@@ -26,4 +26,8 @@ class AppString {
   static const String login = 'login';
   static const String forgetPassword = 'Forget password';
   static const String registerText = 'Not a remember ? sign up';
+
+  static const String loading = 'loading...';
+  static const String retryAgain = 'Retry again';
+  static const String ok = 'Ok';
 }

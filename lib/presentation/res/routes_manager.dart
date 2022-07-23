@@ -39,7 +39,7 @@ class RoutesGenerator {
     return const Scaffold(
       body: Center(
         child: Text(
-          AppString.noRouteFound,
+          AppStrings.noRouteFound,
         ),
       ),
     );

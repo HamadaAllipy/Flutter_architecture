@@ -1,6 +1,7 @@
 
 const String _imagesPath = 'assets/images';
 const String _iconPath = 'assets/icons';
+const String _jsonPath = 'assets/json';
 class ImagesManager{
   ImagesManager._();
 
@@ -15,4 +16,10 @@ class IconsManager{
 
   static const String circleHollow = '$_iconPath/circle_hollow.svg';
   static const String circleSolid = '$_iconPath/circle_solid.svg';
+}
+
+class JsonManager{
+  static const String errorAnimation = '$_jsonPath/error.json';
+  static const String loadingAnimation = '$_jsonPath/lading.json';
+  static const String emptyAnimation = '$_jsonPath/empty.json';
 }

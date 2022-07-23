@@ -67,12 +67,12 @@ class _LoginViewState extends State<LoginView> {
                     keyboardType: TextInputType.emailAddress,
                     controller: _emailController,
                     decoration: InputDecoration(
-                      hintText: AppString.email,
-                      labelText: AppString.email,
+                      hintText: AppStrings.email,
+                      labelText: AppStrings.email,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(AppSize.s12),
                       ),
-                      errorText: isValid?null:AppString.emailError,
+                      errorText: isValid?null:AppStrings.emailError,
                     ),
                   );
                 },
@@ -88,12 +88,12 @@ class _LoginViewState extends State<LoginView> {
                     keyboardType: TextInputType.emailAddress,
                     controller: _passwordController,
                     decoration: InputDecoration(
-                      hintText: AppString.password,
-                      labelText: AppString.password,
+                      hintText: AppStrings.password,
+                      labelText: AppStrings.password,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(AppSize.s12),
                       ),
-                      errorText: isValid?null:AppString.passwordError,
+                      errorText: isValid?null:AppStrings.passwordError,
                     ),
                   );
                 },
@@ -114,7 +114,7 @@ class _LoginViewState extends State<LoginView> {
                         _viewModel.login();
                       }:null,
                       child: const Text(
-                        AppString.login,
+                        AppStrings.login,
                       ),
                     );
                   },
@@ -129,13 +129,13 @@ class _LoginViewState extends State<LoginView> {
                   TextButton(
                     onPressed: () {},
                     child: const Text(
-                      AppString.forgetPassword,
+                      AppStrings.forgetPassword,
                     ),
                   ),
                   TextButton(
                     onPressed: () {},
                     child: const Text(
-                      AppString.registerText,
+                      AppStrings.registerText,
                     ),
                   ),
                 ],

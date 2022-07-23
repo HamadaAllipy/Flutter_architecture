@@ -66,23 +66,23 @@ class OnBoardingViewModel extends BaseViewModel with InputOnBoardingViewModel, O
 
   List<SliderObject> _getSliders() => [
         SliderObject(
-          AppString.titleOnBoarding1,
-          AppString.supTitleOnBoarding1,
+          AppStrings.titleOnBoarding1,
+          AppStrings.supTitleOnBoarding1,
           ImagesManager.imageOnBoarding1,
         ),
         SliderObject(
-          AppString.titleOnBoarding2,
-          AppString.supTitleOnBoarding2,
+          AppStrings.titleOnBoarding2,
+          AppStrings.supTitleOnBoarding2,
           ImagesManager.imageOnBoarding2,
         ),
         SliderObject(
-          AppString.titleOnBoarding3,
-          AppString.supTitleOnBoarding3,
+          AppStrings.titleOnBoarding3,
+          AppStrings.supTitleOnBoarding3,
           ImagesManager.imageOnBoarding3,
         ),
         SliderObject(
-          AppString.titleOnBoarding4,
-          AppString.supTitleOnBoarding4,
+          AppStrings.titleOnBoarding4,
+          AppStrings.supTitleOnBoarding4,
           ImagesManager.imageOnBoarding4,
         ),
       ];
