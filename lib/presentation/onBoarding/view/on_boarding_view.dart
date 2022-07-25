@@ -131,7 +131,9 @@ class _OnBoardingViewState extends State<OnBoardingView> {
     );
   }
 
-  void _skipButton() {}
+  void _skipButton() {
+    Navigator.of(context).pushNamed(Routes.loginRoute);
+  }
 
   Widget getCircleIndicator(int index, int currentIndex) {
     if (index == currentIndex) {

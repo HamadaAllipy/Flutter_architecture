@@ -20,6 +20,6 @@ class IconsManager{
 
 class JsonManager{
   static const String errorAnimation = '$_jsonPath/error.json';
-  static const String loadingAnimation = '$_jsonPath/lading.json';
+  static const String loadingAnimation = '$_jsonPath/loading.json';
   static const String emptyAnimation = '$_jsonPath/empty.json';
 }

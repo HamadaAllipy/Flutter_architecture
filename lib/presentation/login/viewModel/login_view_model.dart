@@ -5,6 +5,8 @@ import 'dart:developer';
 import 'package:flutter_architecture/domain/useCase/login_use_case.dart';
 import 'package:flutter_architecture/presentation/base/base_view_model.dart';
 import 'package:flutter_architecture/presentation/common/freezed_data_classes.dart';
+import 'package:flutter_architecture/presentation/common/state_renderer/state_renderer.dart';
+import 'package:flutter_architecture/presentation/common/state_renderer/state_renderer_impl.dart';
 
 class LoginViewModel extends BaseViewModel
     with _LoginViewModelInput, _LoginViewModelOutput {
@@ -24,13 +26,16 @@ class LoginViewModel extends BaseViewModel
 
   @override
   void dispose() {
+    super.dispose();
     _emailStreamController.close();
     _passwordStreamController.close();
   }
 
   @override
   void start() {
-    // TODO: implement start
+    inputFlowStateSink.add(ContentState());
+
+
   }
 
   @override
@@ -49,12 +54,16 @@ class LoginViewModel extends BaseViewModel
 
   @override
   void login() async {
+
+    inputFlowStateSink.add(LoadingState(StateRendererType.dialogLoadingState));
     (await _loginUseCase.execute(
             LoginUseCaseInput(_loginObject.email, _loginObject.password)))
-        .fold((failure) => {
-          log('Failure ${failure.statusMessage}')
-    }, (authentication) => {
-      log('authentication ${authentication.customerModel?.name}')
+        .fold((failure) {
+      inputFlowStateSink.add(ErrorState(failure.statusMessage, StateRendererType.dialogErrorState));
+      log('FAILURE => ');
+    }, (authentication) {
+      inputFlowStateSink.add(ContentState());
+      log('SUCCESS => ');
     });
   }
 
@@ -64,6 +73,7 @@ class LoginViewModel extends BaseViewModel
     _loginObject = _loginObject.copyWith(password: password);
     inputAreFieldsValidSink.add(null);
   }
+
 
   @override
   void setEmail(String email) {

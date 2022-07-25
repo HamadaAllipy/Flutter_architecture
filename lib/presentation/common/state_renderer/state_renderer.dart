@@ -1,85 +1,87 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_architecture/presentation/res/res.dart';
-import 'package:flutter_architecture/presentation/res/strings_manager.dart';
 import 'package:lottie/lottie.dart';
 
 enum StateRendererType {
+  // Dialog
+
+  dialogLoadingState,
+  dialogErrorState,
+
+  // FullScreen
   fullScreenLoadingState,
   fullScreenErrorState,
-  fullScreenEmpty,
-  popupLoadingState,
-  popupErrorState,
+  fullScreenEmptyState,
+
+  // content screen
   contentState,
 }
 
-class StateRendererWidget extends StatelessWidget {
-
+class StateRenderer extends StatelessWidget {
   final StateRendererType stateRendererType;
-  final String title;
   final String message;
-  final Function retryActionFunction;
+  final Function retryActionButton;
 
-  const StateRendererWidget({
+  const StateRenderer({
     Key? key,
     required this.stateRendererType,
-    required this.retryActionFunction,
-    this.title = AppStrings.loading,
+    required this.retryActionButton,
     this.message = AppStrings.loading,
-  })
-      : super(key: key);
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return getStateWidget(context);
   }
 
-  Widget _getStateWidget(BuildContext context) {
+  Widget getStateWidget(BuildContext context) {
     switch (stateRendererType) {
+      case StateRendererType.dialogLoadingState:
+        return _getDialog(
+          [
+            _getAnimatedImage(JsonManager.loadingAnimation),
+          ],
+        );
+      case StateRendererType.dialogErrorState:
+        return _getDialog(
+          [
+            _getAnimatedImage(JsonManager.errorAnimation),
+            _getMessageText(message),
+            const SizedBox(height: AppSize.s25),
+            _getButton(context, AppStrings.ok),
+            const SizedBox(height: AppSize.s25),
+          ],
+        );
       case StateRendererType.fullScreenLoadingState:
         return _getItemsColumn(
-          children: [
+          [
             _getAnimatedImage(JsonManager.loadingAnimation),
-            _getMessage(message),
+            _getMessageText(AppStrings.loading),
           ],
         );
       case StateRendererType.fullScreenErrorState:
         return _getItemsColumn(
-          children: [
+          [
             _getAnimatedImage(JsonManager.errorAnimation),
-            _getMessage(message),
-            _getRetryButton(
-              buttonTitle: AppStrings.retryAgain,
-              context: context,
-            ),
+            _getMessageText(message),
+            _getButton(context, AppStrings.retryAgain),
           ],
         );
-      case StateRendererType.fullScreenEmpty:
-        return _getItemsColumn(children: []);
-      case StateRendererType.popupLoadingState:
-        return _getPopupDialog(
-          context: context,
-          children: [
+      case StateRendererType.fullScreenEmptyState:
+        return _getItemsColumn(
+          [
             _getAnimatedImage(JsonManager.emptyAnimation),
-          ],
-        );
-      case StateRendererType.popupErrorState:
-        return _getPopupDialog(
-          context: context,
-          children: [
-            _getAnimatedImage(JsonManager.errorAnimation),
-            _getMessage(message),
-            _getRetryButton(buttonTitle: AppStrings.ok, context: context),
+            _getMessageText(AppStrings.noData),
           ],
         );
       case StateRendererType.contentState:
-        return Container();
+        return const SizedBox();
       default:
-        return Container();
+        return const SizedBox();
     }
-
   }
 
-  Widget _getItemsColumn({required List<Widget> children}){
+  Widget _getItemsColumn(List<Widget> children) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -87,64 +89,51 @@ class StateRendererWidget extends StatelessWidget {
     );
   }
 
-  Widget _getAnimatedImage(String animationName){
-    return SizedBox(
-      height: AppSize.s100,
-      width: AppSize.s100,
-      child: Lottie.asset(animationName),
-    );
+  Widget _getAnimatedImage(String animationName) {
+    return Lottie.asset(animationName);
   }
 
-  Widget _getMessage(String message) {
-    return Text(
-      message,
-      style: getRegularStyle(
-        color: ColorsManager.black,
-        fontSize: FontSizes.s16,
+  Widget _getMessageText(String text) {
+    return Text(text);
+  }
+
+  Widget _getButton(BuildContext context, String titleButton) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: AppPadding.p30),
+      child: SizedBox(
+        width: double.infinity,
+        child: ElevatedButton(
+          onPressed: () {
+            if (stateRendererType == StateRendererType.fullScreenErrorState) {
+              retryActionButton.call();
+            } else if (stateRendererType == StateRendererType.dialogErrorState) {
+              Navigator.pop(context);
+            }
+          },
+          child: Text(titleButton),
+        ),
       ),
     );
   }
 
-  Widget _getRetryButton({
-  required String buttonTitle,
-    required BuildContext context,
-}){
-    return SizedBox(
-      width: double.infinity,
-      child: ElevatedButton(
-        onPressed: () {
-          if(stateRendererType == StateRendererType.fullScreenErrorState){
-            retryActionFunction.call();
-          }
-          else{
-            Navigator.pop(context);
-          }
-        },
-        child: Text(buttonTitle),
-      ),
-    );
-  }
-
-  Widget _getPopupDialog({required BuildContext context, required List<Widget> children}){
+  Widget _getDialog(List<Widget> children) {
     return Dialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppSize.s12)),
       backgroundColor: Colors.transparent,
       child: Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           color: ColorsManager.white,
+          borderRadius: BorderRadius.circular(AppSize.s12),
         ),
-        child: _getContentDialog(context: context, children: children),
+        child: _getDialogContent(children),
       ),
-
     );
   }
 
-  Widget _getContentDialog(
-      {required BuildContext context, required List<Widget> children}) {
+  Widget _getDialogContent(List<Widget> children) {
     return Column(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
       children: children,
     );
   }

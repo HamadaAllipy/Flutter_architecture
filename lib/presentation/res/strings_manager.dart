@@ -30,4 +30,5 @@ class AppStrings {
   static const String loading = 'loading...';
   static const String retryAgain = 'Retry again';
   static const String ok = 'Ok';
+  static const String noData = 'No Data';
 }
