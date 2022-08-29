@@ -1,5 +1,7 @@
 # flutter_architecture
 
+[![wakatime](https://wakatime.com/badge/github/HamadaAllipy/flutter_architecture.svg)](https://wakatime.com/badge/github/HamadaAllipy/flutter_architecture)
+
 A new Flutter project.
 
 ## Getting Started
