@@ -2,6 +2,8 @@ import 'package:flutter_architecture/presentation/res/language_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 const String languageKeyPref = 'language';
+const String prefKeyOnBoardingViewed = 'prefKeyOnBoardingViewed';
+const String prefKeyIsUserLoggedIn = 'prefKeyIsUserLoggedIn';
 
 class AppPreferences {
   final SharedPreferences _sharedPreferences;
@@ -15,5 +17,25 @@ class AppPreferences {
     } else {
       return lang;
     }
+  }
+
+  // onBoarding
+
+  Future<void> setOnBoardingViewed() async {
+    _sharedPreferences.setBool(prefKeyOnBoardingViewed, true);
+  }
+
+  Future<bool> isOnBoardingViewed() async {
+    return _sharedPreferences.getBool(prefKeyOnBoardingViewed) ?? false;
+  }
+
+  // Login
+
+  Future<void> setUserLoggedIn() async {
+    _sharedPreferences.setBool(prefKeyIsUserLoggedIn, true);
+  }
+
+  Future<bool> isUserLoggedIn() async {
+    return _sharedPreferences.getBool(prefKeyIsUserLoggedIn) ?? false;
   }
 }

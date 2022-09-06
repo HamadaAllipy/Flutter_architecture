@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_architecture/app/di.dart';
 import 'package:flutter_architecture/presentation/login/view/login_view.dart';
 import 'package:flutter_architecture/presentation/on_boarding/view/on_boarding_view.dart';
 import 'package:flutter_architecture/presentation/res/Strings_manager.dart';
@@ -19,7 +18,6 @@ class RouteGenerator {
       case Routes.onBoardingRoute:
         return _moveRoute(const OnBoardingView());
       case Routes.loginRoute:
-        initLoginModule();
         return _moveRoute(const LoginView());
       default:
         return _moveRoute(const NoRouteFound());

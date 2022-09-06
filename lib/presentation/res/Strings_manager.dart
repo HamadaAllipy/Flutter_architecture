@@ -26,4 +26,7 @@ class StringsManager {
   static const String loading = 'Loading...';
   static const String retryAgain = 'Retry again';
   static const String ok = 'ok';
+  static const String resetPassword = 'ResetPassword';
+  static const String forgotText = 'Didn\'t receive email ? Resend ';
+  static const String errorEmail = 'Email is not Validate';
 }

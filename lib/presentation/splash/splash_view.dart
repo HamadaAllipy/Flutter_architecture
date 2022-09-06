@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,28 +16,28 @@ class SplashView extends StatefulWidget {
 }
 
 class _SplashViewState extends State<SplashView> {
-
-
-  late Timer _timer;
+  Timer? _timer;
 
   @override
   void initState() {
+    log('Executed');
     startDelay();
     super.initState();
   }
 
   @override
   void dispose() {
-    _timer.cancel();
+    _timer?.cancel();
     super.dispose();
   }
 
-  void startDelay(){
-    _timer = Timer(const Duration(seconds: ConstantsManager.splashTimer), _next);
+  void startDelay() {
+    _timer =
+        Timer(const Duration(seconds: ConstantsManager.splashTimer), _next);
   }
 
-  void _next(){
-    Navigator.of(context).pushReplacementNamed(Routes.onBoardingRoute);
+  void _next() async {
+    Navigator.of(context).pushNamed(Routes.onBoardingRoute);
   }
 
   @override
@@ -46,9 +47,8 @@ class _SplashViewState extends State<SplashView> {
       appBar: AppBar(
         backgroundColor: ColorsManager.primary,
         systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarIconBrightness: Brightness.light,
-          statusBarColor: ColorsManager.primary
-        ),
+            statusBarIconBrightness: Brightness.light,
+            statusBarColor: ColorsManager.primary),
       ),
       body: Center(
         child: Image.asset(ImagesManager.splashLogo),
